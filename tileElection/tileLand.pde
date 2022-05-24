@@ -9,4 +9,12 @@ public class tileLand{
       }
     }
   }
+  
+  public tileLand(int boardlen, int pinfluencef, int wildf){
+    wildfactor = wildf;
+    peerinfluencefactor = pinfluencef;
+    boardlength = boardlen;
+  
+  }
+  
 }
