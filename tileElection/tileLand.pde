@@ -45,7 +45,12 @@ public class tileLand{
             }
           } 
         }
-        
+        if (red > blue){
+          tilesfuture[i][j] = new tileSquare((j+1)*width/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(255,50,50));
+        }
+        else{
+          tilesfuture[i][j] = new tileSquare((j+1)*width/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(50,50,255));
+        }
       }
     }
   }
