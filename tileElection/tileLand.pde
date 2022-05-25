@@ -55,7 +55,13 @@ public class tileLand{
           }
         }
         else{
-
+          int redorblue = (int)random(1,3);
+          if (redorblue == 1){
+              tilesfuture[i][j] = new tileSquare((j+1)*width/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(50,50,255));
+          }
+          else{
+              tilesfuture[i][j] = new tileSquare((j+1)*width/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(255,50,50));
+          }
         }
       }
     }
