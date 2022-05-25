@@ -10,3 +10,11 @@ static boolean time;
 tileLand tl;
 int i= 0;
 int j=0;
+
+void setup(){
+
+}
+
+void draw() {
+
+}
