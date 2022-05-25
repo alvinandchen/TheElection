@@ -31,6 +31,26 @@ public class tileLand{
     tileSquare[][] tilesfuture = new tileSquare[boardlength][boardlength];
     for (int i=0; i<boardlength; i+=1){
       for (int j=0; j<boardlength; j+=1){
+        int red = 0;
+        int blue = 0;
+        for (int k = -peerinfluencefactor; k <= peerinfluencefactor; k++){
+          for (int l = -peerinfluencefactor; l <= peerinfluencefactor; l++){
+            if ((i+k>=0 && i+k<boardlength) && (j+l>=0 && j+l<boardlength)){
+              if(tiles[i + k][j + l].c == color(255,50,50)){
+                red ++;
+              }
+              if(tiles[i + k][j + l].c == color(50,50,255)){
+                blue++;
+              }
+            }
+          } 
+        }
+        if (red > blue){
+          tilesfuture[i][j] = new tileSquare((j+1)*width/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(255,50,50));
+        }
+        else{
+          tilesfuture[i][j] = new tileSquare((j+1)*width/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(50,50,255));
+        }
       }
     }
   }
