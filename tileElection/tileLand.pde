@@ -27,5 +27,11 @@ public class tileLand{
       }
     }  
   }
-  
+  void naturalprocess(){
+    tileSquare[][] tilesfuture = new tileSquare[boardlength][boardlength];
+    for (int i=0; i<boardlength; i+=1){
+      for (int j=0; j<boardlength; j+=1){
+      }
+    }
+  }
 }
