@@ -6,7 +6,6 @@ static int directColorMode;
 static int directInfluenceMode;
 static int timer;
 static boolean time;
-
 tileLand tl;
 int i= 0;
 int j=0;
