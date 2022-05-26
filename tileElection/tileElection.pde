@@ -49,27 +49,47 @@ void draw() {
   if (key == '1'){
     peerinfluencefactor ++;
   }
+  
   if (key == '2' && peerinfluencefactor != 0){
     peerinfluencefactor --;
   }
+  
   if (key == '3' && wildfactor != 100){
     wildfactor ++;
   }
+  
   if (key == '4' && wildfactor != 0){
     wildfactor --;
   }
   
-    if (key == '5'){
+  if (key == '5'){
     boardlength ++;
   }
+  
   if (key == '6' && boardlength > 2){
     boardlength --;
   }
+  
   if (key == 'd'){
     directColorMode ++;
     if (directColorMode == 2){
       directColorMode = 0;
     }
   }
+  
+  if (key == 'g'){
+    directInfluenceMode ++;
+    if (directInfluenceMode == 2){
+      directInfluenceMode = 0;
+    }
+    time = !time;
+  }
+  
+  if (key == 'f'){
+    directinfluencefactor ++;
+  }
+  
+  if (key == 'n'){
+    tl.naturalprocess();
   }
 }
