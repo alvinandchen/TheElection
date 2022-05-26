@@ -71,6 +71,10 @@ public class tileLand{
     if (!time){
       timer = influencefactor;
     }
+    for (int i = 0; i < boardlength; i++){
+      for (int j = 0; j < boardlength; j++){
 
+      }
+    }
   }
 }
