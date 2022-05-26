@@ -33,13 +33,11 @@ void draw() {
   else{
     tl.directInfluence(mouseX,mouseY,"Red",time, directinfluencefactor,(int)timer/10);
   }
-  
   println(timer);
-  
-  }
   if (!mousePressed || !time){
     timer = 0;
   }
+}
   
   void mouseClicked(){
     
