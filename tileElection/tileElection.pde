@@ -25,21 +25,23 @@ void draw() {
   text("Board Length: " + boardlength, 20, 30);
   text("Peer Influence: " + peerinfluencefactor, 20, 60);
   text("Wildfactor: " + wildfactor, 20, 90);
-  
-  if (directColorMode == 1){
-    tl.directInfluence(mouseX,mouseY,"Blue",time, directinfluencefactor, (int)timer/10);
+  if (mousePressed){
+    if (time){
+      timer ++;
+    }
+    if (directColorMode == 1){
+      tl.directInfluence(mouseX,mouseY,"Blue",time, directinfluencefactor, (int)timer/10);
+    }
+    
+    else{
+      tl.directInfluence(mouseX,mouseY,"Red",time, directinfluencefactor,(int)timer/10);
+    }
+    println(timer);
+    if (!mousePressed || !time){
+      timer = 0;
+    }
   }
-  
-  else{
-    tl.directInfluence(mouseX,mouseY,"Red",time, directinfluencefactor,(int)timer/10);
-  }
-  
-  println(timer);
-  
-  }
-  if (!mousePressed || !time){
-    timer = 0;
-  }
+}
   
   void mouseClicked(){
     

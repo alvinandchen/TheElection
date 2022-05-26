@@ -67,5 +67,14 @@ public class tileLand{
     }
     tiles = tilesfuture;
   }
-  
+  void directInfluence(float x, float y, String clr, boolean time, int influencefactor, int timer){
+    if (!time){
+      timer = influencefactor;
+    }
+    for (int i = 0; i < boardlength; i++){
+      for (int j = 0; j < boardlength; j++){
+
+      }
+    }
+  }
 }
