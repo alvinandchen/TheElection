@@ -46,6 +46,17 @@ void draw() {
   }
   
   void keyPressed(){
-    
+  if (key == '1'){
+    peerinfluencefactor ++;
+  }
+  if (key == '2' && peerinfluencefactor != 0){
+    peerinfluencefactor --;
+  }
+  if (key == '3' && wildfactor != 100){
+    wildfactor ++;
+  }
+  if (key == '4' && wildfactor != 0){
+    wildfactor --;
+  }  
   }
 }
