@@ -57,6 +57,19 @@ void draw() {
   }
   if (key == '4' && wildfactor != 0){
     wildfactor --;
-  }  
+  }
+  
+    if (key == '5'){
+    boardlength ++;
+  }
+  if (key == '6' && boardlength > 2){
+    boardlength --;
+  }
+  if (key == 'd'){
+    directColorMode ++;
+    if (directColorMode == 2){
+      directColorMode = 0;
+    }
+  }
   }
 }
