@@ -73,8 +73,11 @@ public class tileLand{
     }
     for (int i = 0; i < boardlength; i++){
       for (int j = 0; j < boardlength; j++){
-
-      }
+        if ((j+1)*width/(boardlength+2)<x && (j+2)*
+        width/(boardlength+2)>x && (i+1)*height/(boardlength+2)<y
+        && (i+2)*height/(boardlength+2)>y){
+          
+        }
     }
   }
 }
