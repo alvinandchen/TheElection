@@ -18,8 +18,6 @@ int j=0;
 void setup(){
   size(1100,750);
   tl = new tileLand(200);
-//  tl = new tileList(100,1,100);
-
 }
 
 void draw() {
