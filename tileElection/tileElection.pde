@@ -12,7 +12,7 @@ int j=0;
 
 void setup(){
   size(750,750);
-  tl = new tileLand(200,0,1);
+  tl = new tileLand(100,0,1);
 //  tl = new tileList(100,1,100);
 
 }
@@ -30,16 +30,15 @@ void draw() {
       timer ++;
     }
     if (directColorMode == 1){
-      tl.directInfluence(mouseX,mouseY,"Blue",time, directinfluencefactor, (int)timer/10);
+      tl.directInfluence(mouseX,mouseY,"Blue",time, directinfluencefactor, (int)timer/10, 0);
     }
     
     else{
-      tl.directInfluence(mouseX,mouseY,"Red",time, directinfluencefactor,(int)timer/10);
+      tl.directInfluence(mouseX,mouseY,"Red",time, directinfluencefactor,(int)timer/10, 0);
     }
-    println(timer);
-    if (!mousePressed || !time){
-      timer = 0;
-    }
+  }
+  if (!mousePressed || !time){
+    timer = 0;
   }
 }
   
