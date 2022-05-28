@@ -108,7 +108,16 @@ public class tileLand{
           //println(timer);
           //println(sqrt( pow(x-((float)j+1.5)*width/(boardlength+2),2) + pow(y-((float)i+1.5)*height/(boardlength+2),2) ));
           if (timer*5+width/(2*(boardlength+2)) >= sqrt( pow(x-((float)j+1.5)*width/(boardlength+2),2) + pow(y-((float)i+1.5)*height/(boardlength+2),2) ) ){
-
+            if (clr.equals("Blue")){
+              if (tiles[i][j].c == color(255,50,50)){
+                tiles[i][j] = new tileSquare((j+1)*width/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(50,50,255));            
+              }
+            }
+            if (clr.equals("Red")){
+              if (tiles[i][j].c == color(50,50,255)){
+                tiles[i][j] = new tileSquare((j+1)*width/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(255,50,50));
+              }
+            }
           }
         }
         
