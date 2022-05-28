@@ -95,6 +95,63 @@ void draw() {
   }
 }
   
- void keyPressed(){
-
+void keyPressed(){
+  if (key == '1'){
+    peerinfluencefactor ++;
+  }
+  
+  if (key == '2' && peerinfluencefactor != 0){
+    peerinfluencefactor --;
+  }
+  
+  if (key == '3' && wildfactor != 100){
+    wildfactor ++;
+  }
+  
+  if (key == '4' && wildfactor != 0){
+    wildfactor --;
+  }
+  
+  if (key == 'c'){
+    directColorMode ++;
+    if (directColorMode == 2){
+      directColorMode = 0;
+    }
+  }
+  
+  if (key == 'r'){
+    directInfluenceMode ++;
+    if (directInfluenceMode == 2){
+      directInfluenceMode = 0;
+    }
+    time = !time;
+  }
+  
+  if (key == '5'){
+    directinfluencefactor ++;
+  }
+  if (key == '6'){
+    directinfluencefactor --;
+  }
+  if (key == ' '){
+    tl.naturalprocess();
+  }
+  if (key == 's'){
+    directShape++;
+    if (directShape == 2){
+      directShape = 0;
+    }
+  }
+  if (key == '7'){
+    directEffectiveness ++;
+  }
+  if (key == '8'){
+    directEffectiveness --;
+  }
+  if (key == '9'){
+    directSpeed ++;
+  }
+  if (key == '0'){
+    directSpeed --;
+  }
 }
