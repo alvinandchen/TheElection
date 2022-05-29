@@ -1,5 +1,10 @@
 # TheElection
+An election simulator developed by Craig Chen and Alvin Chen.
+
 ## Compile/Run Instructions:
+1. Clone the repository
+2. Run the processing Folder
+3. In program simulation instructions are provided
 
 ## Development Log:
 ### 5/12
