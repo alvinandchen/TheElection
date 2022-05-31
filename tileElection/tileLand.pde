@@ -1,6 +1,8 @@
 public class tileLand{ 
+  // 2 day array of tileSquares to make up a map
   private tileSquare[][] tiles; 
   
+  // displays all individual tiles of the map
   void display(){
     for (int i=0; i<boardlength; i+=1){
       for (int j=0; j<boardlength; j+=1){
@@ -9,11 +11,13 @@ public class tileLand{
     }
   }
   
+  // creates a map with given boardlength so it fits proportionally to the set width and height
   public tileLand(int boardlen){
     boardlength = boardlen;
     tiles = new tileSquare[boardlength][boardlength];
     for(int i=0; i<boardlength; i++){
       for(int j=0; j<boardlength; j++){
+        // creates the proper number of tileSquares with proper x y and a random color (red or blue)
         int col = (int)random(1,3);
         if (col == 1){
           tiles[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(50,50,255));
@@ -27,11 +31,14 @@ public class tileLand{
     }  
   }
   void naturalprocess(){
+    // creates a temp map for tileSquare
     tileSquare[][] tilesfuture = new tileSquare[boardlength][boardlength];
     for (int i=0; i<boardlength; i+=1){
       for (int j=0; j<boardlength; j+=1){
+        // counts the number of red and blue neighbors and also counts itself
         int redn = 0;
         int bluen = 0;
+        // counts in a given area size
         for (int k = -peerinfluencefactor; k <= peerinfluencefactor; k++){
           for (int l = -peerinfluencefactor; l <= peerinfluencefactor; l++){
             if ((i+k>=0 && i+k<boardlength) && (j+l>=0 && j+l<boardlength)){
@@ -44,8 +51,11 @@ public class tileLand{
             }
           } 
         }
+        // generate a random number and compare it to the wildfactor to determine the randomness of tiles changing color
         int chosencolor = (int)random(0,100);
         if (chosencolor >= wildfactor){
+          // runs the non-wild code
+          // assigns a new color to the tile based on the majority color surrounding it
           if (redn > bluen && tiles[i][j].c == color(50,50,255)){
             tilesfuture[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(255,50,50));
             red ++;
@@ -61,6 +71,7 @@ public class tileLand{
           }
         }
         else{
+          // run the wild code (will assign a random color to that square)
           int redorblue = (int)random(1,3);
           if (redorblue == 1 && tiles[i][j].c == color(255,50,50)){
               tilesfuture[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(50,50,255));
@@ -78,6 +89,7 @@ public class tileLand{
         }
       }
     }
+    // original array takes new reference to the temp array
     tiles = tilesfuture;
   }
   void directInfluence(float x, float y, String clr, boolean time, int influencefactor, int shape, int effect){
@@ -90,8 +102,10 @@ public class tileLand{
     else{
       circle = true;
     }
+    // increases radius appropriately (in effect when in time radius mode)
     radius += (directSpeed)/(750*5/(float)(boardlength+2));
     if (!time){
+      // if not in time radius mode radius will be influence factor determined
       radius = influencefactor;
     }
     
