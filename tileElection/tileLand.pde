@@ -121,7 +121,6 @@ public class tileLand{
                 if ((i+k>=0 && i+k<boardlength) && (j+l>=0 && j+l<boardlength)){     
                   if (clr.equals("Blue")){
                     if (tiles[i+k][j+l].c == color(255,50,50)&& random(0,3000)>(3000-effect)){
-                      println(i);
                       tiles[i+k][j+l] = new tileSquare((j+l+1)*(width-350)/(boardlength+2),(i+k+1)*height/(boardlength+2),height/(boardlength+2),color(50,50,255));            
                       blue ++;
                       red --;
@@ -145,7 +144,6 @@ public class tileLand{
           if (radius * (750/(boardlength+2)) >= sqrt( pow(x-((float)j+1.5)*(750)/(boardlength+2),2) + pow(y-((float)(i)+1.5)*(height/(boardlength+2)),2) ) ){
             if (clr.equals("Blue")){
               if (tiles[i][j].c == color(255,50,50) && random(0,3000)>(3000-effect)){
-                println(i);
                 tiles[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*(height)/(boardlength+2),height/(boardlength+2),color(50,50,255));            
                 red --;
                 blue ++;
