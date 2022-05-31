@@ -10,7 +10,7 @@ static int directinfluencefactor = 3;
 static int directColorMode;
 static int directInfluenceMode;
 static int directShape;
-static int directEffectiveness = 1000;
+static int directEffectiveness;
 static int directSpeed = 1;
 static boolean time;
 static float radius;
@@ -18,7 +18,7 @@ tileLand tl;
 
 void setup(){
   size(1100,750);
-  tl = new tileLand(200);
+  tl = new tileLand(50);
 }
 
 void draw() {
