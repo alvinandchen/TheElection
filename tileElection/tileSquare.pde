@@ -12,7 +12,6 @@ public class tileSquare {
  
   void display() {
     fill(c);
-//    stroke(color(155,55,255));
     rect(x, y, size, size);
   }
 }

@@ -1,9 +1,12 @@
+// added for count 
 static int red;
 static int blue;
+// takes boardlength value
 static int boardlength;
 static int peerinfluencefactor;
-static int directinfluencefactor = 3;
 static int wildfactor;
+// direct influence code variables
+static int directinfluencefactor = 3;
 static int directColorMode;
 static int directInfluenceMode;
 static int directShape;
@@ -12,8 +15,6 @@ static int directSpeed = 1;
 static boolean time;
 static float radius;
 tileLand tl;
-int i= 0;
-int j=0;
 
 void setup(){
   size(1100,750);
