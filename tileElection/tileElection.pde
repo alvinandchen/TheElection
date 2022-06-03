@@ -105,7 +105,8 @@ void draw() {
   }
   int passtime = millis() - savetime;
   if (passtime > 1000) {
-
+    tl.naturalprocess();
+    savetime = millis();
   }
 }
   
