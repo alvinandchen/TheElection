@@ -14,11 +14,22 @@ static int directEffectiveness;
 static int directSpeed = 1;
 static boolean time;
 static float radius;
+// save time variable used for natural process
+static int savetime;
+// tileLand object used as the map
 tileLand tl;
 
 void setup(){
   size(1100,750);
   tl = new tileLand(50);
+  savetime = millis();
+}
+
+void natural(){
+  if (millis()%100 > 97){
+    println(millis()%100);
+    tl.naturalprocess();
+  }
 }
 
 void draw() {
@@ -92,6 +103,7 @@ void draw() {
   if (!mousePressed || !time){
     radius = 0;
   }
+
 }
   
 void keyPressed(){
