@@ -17,6 +17,7 @@ static float radius;
 // time variables for natural process
 static int savetime;
 static int naturalspeed = 1000;
+static int daysleft;
 // tileLand object used as the map
 tileLand tl;
 
@@ -33,6 +34,7 @@ void natural(){
 }
 
 void draw() {
+  daysleft = 100 - millis()/naturalspeed;
   background(0);
   tl.display();
   fill(255);
@@ -49,6 +51,8 @@ void draw() {
   text("Red Count: " + red, 770, down);
   down += 30;
   text("Blue Count: " + blue, 770, down);
+  down += 30;
+  text("Days Left: " + daysleft, 770, down);
   down += 50;
   textSize(20);
   text("NATURAL PROCESS VARIABLES", 770, down);
