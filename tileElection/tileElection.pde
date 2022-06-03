@@ -10,12 +10,13 @@ static int directinfluencefactor = 3;
 static int directColorMode;
 static int directInfluenceMode;
 static int directShape;
-static int directEffectiveness;
+static int directEffectiveness = 100;
 static int directSpeed = 1;
 static boolean time;
 static float radius;
-// save time variable used for natural process
+// time variables for natural process
 static int savetime;
+static int naturalspeed = 1000;
 // tileLand object used as the map
 tileLand tl;
 
@@ -104,7 +105,7 @@ void draw() {
     radius = 0;
   }
   int passtime = millis() - savetime;
-  if (passtime > 1000) {
+  if (passtime > naturalspeed) {
     tl.naturalprocess();
     savetime = millis();
   }
@@ -147,9 +148,6 @@ void keyPressed(){
   }
   if (key == '6'){
     directinfluencefactor --;
-  }
-  if (key == ' '){
-    tl.naturalprocess();
   }
   if (key == 's'){
     directShape++;
