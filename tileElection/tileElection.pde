@@ -26,16 +26,6 @@ void setup(){
   tl = new tileLand(50);
 }
 
-//void natural(){
-//  if (millis()%100 > 97){
-//    println(millis()%100);
-//    daysleft --;
-//    println("1");
-//    tl.naturalprocess();
-
-//  }
-//}
-
 void draw() {
 //  daysleft = 100 - millis()/naturalspeed;
   background(0);
