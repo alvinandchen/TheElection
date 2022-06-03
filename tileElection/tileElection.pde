@@ -17,7 +17,7 @@ static float radius;
 // time variables for natural process
 static int savetime;
 static int naturalspeed = 1000;
-static int daysleft;
+static int daysleft = 100;
 // tileLand object used as the map
 tileLand tl;
 
@@ -26,15 +26,18 @@ void setup(){
   tl = new tileLand(50);
 }
 
-void natural(){
-  if (millis()%100 > 97){
-    println(millis()%100);
-    tl.naturalprocess();
-  }
-}
+//void natural(){
+//  if (millis()%100 > 97){
+//    println(millis()%100);
+//    daysleft --;
+//    println("1");
+//    tl.naturalprocess();
+
+//  }
+//}
 
 void draw() {
-  daysleft = 100 - millis()/naturalspeed;
+//  daysleft = 100 - millis()/naturalspeed;
   background(0);
   tl.display();
   fill(255);
@@ -111,6 +114,7 @@ void draw() {
   if (passtime > naturalspeed) {
     tl.naturalprocess();
     savetime = millis();
+    daysleft --;
   }
 }
   
@@ -169,5 +173,8 @@ void keyPressed(){
   }
   if (key == '0'){
     directSpeed --;
+  }
+  if (key == '-'){
+    naturalspeed += 100;
   }
 }
