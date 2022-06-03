@@ -3,4 +3,6 @@ public class tileDistrict{
   private String party;
   private int dis_width;
   private int dis_height;
+  
+  
 }
