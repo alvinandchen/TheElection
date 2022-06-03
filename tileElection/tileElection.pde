@@ -103,7 +103,10 @@ void draw() {
   if (!mousePressed || !time){
     radius = 0;
   }
+  int passtime = millis() - savetime;
+  if (passtime > 1000) {
 
+  }
 }
   
 void keyPressed(){
