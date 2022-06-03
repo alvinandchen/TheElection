@@ -23,7 +23,6 @@ tileLand tl;
 void setup(){
   size(1100,750);
   tl = new tileLand(50);
-  savetime = millis();
 }
 
 void natural(){
