@@ -39,10 +39,10 @@ public class tileLand{
         int redn = 0;
         int bluen = 0;
         if (tiles[i][j].c == color(255,50,50)){
-          redn +=2*peerinfluencefactor;
+          redn +=2;
         }
         else{
-          bluen +=2*peerinfluencefactor;
+          bluen +=2;
         }
         // counts in a given area size
         for (int k = -peerinfluencefactor; k <= peerinfluencefactor; k++){
@@ -62,12 +62,12 @@ public class tileLand{
         if (chosencolor >= wildfactor){
           // runs the non-wild code
           // assigns a new color to the tile based on the majority color surrounding it
-          if (redn > bluen*1.5 && tiles[i][j].c == color(50,50,255)){
+          if (redn > bluen*(1.5 - (peerinfluencefactor*0.05)) && tiles[i][j].c == color(50,50,255)){
             tilesfuture[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(255,50,50));
             red ++;
-            blue --;
+            blue --; 
           }
-          else if (bluen > redn*1.5 && tiles[i][j].c == color(255,50,50)){
+          else if (bluen > redn*(1.5 - (peerinfluencefactor*0.05)) && tiles[i][j].c == color(255,50,50)){
             tilesfuture[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(50,50,255));
             blue ++;
             red --;
