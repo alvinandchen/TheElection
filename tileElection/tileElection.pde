@@ -23,7 +23,7 @@ tileLand tl;
 
 void setup(){
   size(1100,750);
-  tl = new tileLand(50);
+  tl = new tileLand(100);
 }
 
 void draw() {
