@@ -39,10 +39,10 @@ public class tileLand{
         int redn = 0;
         int bluen = 0;
         if (tiles[i][j].c == color(255,50,50)){
-          redn += 2*peerinfluencefactor;
+          redn +=2*peerinfluencefactor;
         }
         else{
-          bluen += 2*peerinfluencefactor;
+          bluen +=2*peerinfluencefactor;
         }
         // counts in a given area size
         for (int k = -peerinfluencefactor; k <= peerinfluencefactor; k++){
