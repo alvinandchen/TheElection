@@ -59,15 +59,22 @@ public class tileLand{
         }
         // generate a random number and compare it to the wildfactor to determine the randomness of tiles changing color
         int chosencolor = (int)random(0,100);
+        double balancingfactor;
+        if (peerinfluencefactor <= 10){
+          balancingfactor = 1.5 - (peerinfluencefactor*0.05);
+        }
+        else{
+          balancingfactor = 1;
+        }
         if (chosencolor >= wildfactor){
           // runs the non-wild code
           // assigns a new color to the tile based on the majority color surrounding it
-          if (redn > bluen*(1.5 - (peerinfluencefactor*0.05)) && tiles[i][j].c == color(50,50,255)){
+          if (redn > bluen*balancingfactor && tiles[i][j].c == color(50,50,255)){
             tilesfuture[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(255,50,50));
             red ++;
             blue --; 
           }
-          else if (bluen > redn*(1.5 - (peerinfluencefactor*0.05)) && tiles[i][j].c == color(255,50,50)){
+          else if (bluen > redn*balancingfactor && tiles[i][j].c == color(255,50,50)){
             tilesfuture[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(50,50,255));
             blue ++;
             red --;
