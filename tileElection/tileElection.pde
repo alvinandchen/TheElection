@@ -102,6 +102,9 @@ void draw() {
     if (directColorMode == 1){
       text("(c) Color of Influence: Blue", 770, down);
     }
+    if (directColorMode == 2){
+      text("(c) Color of Influence: Green", 770, down);
+    }
     down += 30;
     if (directShape == 0){
       text("(s) Shape of Influence: Circle", 770, down);
@@ -174,7 +177,7 @@ void keyPressed(){
   
   if (key == 'c'){
     directColorMode ++;
-    if (directColorMode == 2){
+    if (directColorMode == 3){
       directColorMode = 0;
     }
   }

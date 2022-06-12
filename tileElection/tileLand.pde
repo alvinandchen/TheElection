@@ -158,11 +158,14 @@ public class tileLand{
   }
   void directInfluence(){
     String clr;
-    if (directColorMode == 1){
-      clr = "Blue";
-    }
-    else{
+    if (directColorMode == 0){
       clr = "Red";
+    }
+    else if (directColorMode == 1){
+      clr = "Blue";
+    }    
+    else{
+      clr = "Green";
     }
     //check if square or circle influence area chosen
     boolean square = false;
@@ -191,17 +194,24 @@ public class tileLand{
               for (int l = -((int)radius); l <= ((int)radius); l++){
                 if ((i+k>=0 && i+k<boardlength) && (j+l>=0 && j+l<boardlength)){     
                   if (clr.equals("Blue")){
-                    if (tiles[i+k][j+l].c == color(255,50,50)&& random(0,3000)>(3000-directEffectiveness)){
+                    if (tiles[i+k][j+l].c != color(50,50,255)&& random(0,3000)>(3000-directEffectiveness)){
+                      adding("blue",i+k,j+l);
                       tiles[i+k][j+l] = new tileSquare((j+l+1)*(width-350)/(boardlength+2),(i+k+1)*height/(boardlength+2),height/(boardlength+2),color(50,50,255));            
-                      blue ++;
-                      red --;
+                      
                     }
                   }
                   if (clr.equals("Red")){
-                    if (tiles[i+k][j+l].c == color(50,50,255) && random(0,3000)>(3000-directEffectiveness)){
+                    if (tiles[i+k][j+l].c != color(255,50,50) && random(0,3000)>(3000-directEffectiveness)){
+                      adding("red",i+k,j+l);
                       tiles[i+k][j+l] = new tileSquare((j+l+1)*(width-350)/(boardlength+2),(i+k+1)*height/(boardlength+2),height/(boardlength+2),color(255,50,50));                
-                      red ++;
-                      blue --;
+                      
+                    }
+                  }
+                  if (clr.equals("Green")){
+                    if (tiles[i+k][j+l].c != color(50,255,50) && random(0,3000)>(3000-directEffectiveness)){
+                      adding("green",i+k,j+l);
+                      tiles[i+k][j+l] = new tileSquare((j+l+1)*(width-350)/(boardlength+2),(i+k+1)*height/(boardlength+2),height/(boardlength+2),color(50,255,50));                
+                      
                     }
                   }
                 }
@@ -214,23 +224,55 @@ public class tileLand{
         if (circle){
           if (radius * (750/(boardlength+2)) >= sqrt( pow(mouseX-((float)j+1.5)*((float)750)/(boardlength+2),2) + pow(mouseY-((float)(i)+1.5)*(((float)750)/(boardlength+2)),2) ) ){
             if (clr.equals("Blue")){
-              if (tiles[i][j].c == color(255,50,50) && random(0,3000)>(3000-directEffectiveness)){
+              if (tiles[i][j].c != color(50,50,255) && random(0,3000)>(3000-directEffectiveness)){
+                adding("blue",i,j);
                 tiles[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*(height)/(boardlength+2),height/(boardlength+2),color(50,50,255));            
-                red --;
-                blue ++;
               }
             }
             if (clr.equals("Red")){
-              if (tiles[i][j].c == color(50,50,255) && random(0,3000)>(3000-directEffectiveness)){
+              if (tiles[i][j].c != color(255,50,50) && random(0,3000)>(3000-directEffectiveness)){
+                adding("red",i,j);
                 tiles[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(255,50,50));
-                blue --;
-                red ++;
+              }
+            }
+            if (clr.equals("Green")){
+              if (tiles[i][j].c != color(50,255,50) && random(0,3000)>(3000-directEffectiveness)){
+                adding("green",i,j);
+                tiles[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(50,255,50));
               }
             }
           }
         }
-        
       }
+    }
+  }
+  void adding(String col, int i, int j){
+    if (col.equals("green")){
+      if (tiles[i][j].c == color(255,50,50)){
+        red --;
+      }
+      if (tiles[i][j].c == color(50,50,255)){
+        blue --;
+      }
+      green ++;
+    }
+    if (col.equals("red")){
+      if (tiles[i][j].c == color(50,255,50)){
+        green --;
+      }
+      if (tiles[i][j].c == color(50,50,255)){
+        blue --;
+      }
+      red ++;
+    }
+    if (col.equals("blue")){
+      if (tiles[i][j].c == color(255,50,50)){
+        red --;
+      }
+      if (tiles[i][j].c == color(50,255,50)){
+        green --;
+      }     
+      blue ++;
     }
   }
 }
