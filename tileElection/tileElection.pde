@@ -29,18 +29,31 @@ void setup(){
 }
 
 void beginningscreen(){
-    background(0);
-    fill(0,0,255);
-    textSize(100);
-    text("ELECTION", 20, 100);
-    fill(250,0,0);
-    text("SIMULATOR", 520, 100);    
-    textSize(50);
-    fill(0,255,0);
-    text("CHOOSE YOUR BOARD SIZE", 200, 200);  
-    tl = new tileLand(100);
-    //begin = false;
-
+  fill(0,0,255);
+  textSize(100);
+  text("ELECTION", 20, 100);
+  fill(250,0,0);
+  text("SIMULATOR", 520, 100);    
+  textSize(50);
+  fill(0,255,0);
+  text("CHOOSE YOUR BOARD SIZE", 200, 200);  
+  fill(255);
+  textSize(30);
+  text("Click Anywhere On The Screen To Determine Board Size",155,250);
+  textSize(20);
+  text("the more left the smaller, the more right the larger (numbers provided for appx reference)",120,280);
+  text("15",30,500);
+  text("50",140,500);
+  text("100",270,500);
+  text("150",430,500);
+  text("200",575,500);
+  text("250",720,500);
+  text("300",865,500);
+  text("350",1020,500);
+  if (mousePressed){
+    tl = new tileLand(((int)(mouseX * ((double)750/1100)))/2);
+    begin = false;
+  }
 }
 
 void draw() {
