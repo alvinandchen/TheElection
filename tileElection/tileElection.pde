@@ -102,13 +102,15 @@ void draw() {
   }
   int passtime = millis() - savetime;
   if (passtime > naturalspeed) {
-    tl.naturalprocess();
-    savetime = millis();
-    daysleft --;
-    if (daysleft == 0){
-      background(#34568B);
+    if (daysleft > 0){
+      tl.naturalprocess();
+      savetime = millis();
+      daysleft --; 
     }
-    
+    else{
+       fill(#34568B);
+       rect(0,0,750,750);
+    }
   }
 }
   
