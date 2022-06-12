@@ -158,7 +158,7 @@ public class tileLand{
         
         // circle influence code
         if (circle){
-          if (radius * (750/(boardlength+2)) >= sqrt( pow(x-((float)j+1.5)*(750)/(boardlength+2),2) + pow(y-((float)(i)+1.5)*((750)/(boardlength+2)),2) ) ){
+          if (radius * (750/(boardlength+2)) >= sqrt( pow(x-((float)j+1.5)*((float)750)/(boardlength+2),2) + pow(y-((float)(i)+1.5)*(((float)750)/(boardlength+2)),2) ) ){
             if (clr.equals("Blue")){
               if (tiles[i][j].c == color(255,50,50) && random(0,3000)>(3000-effect)){
                 tiles[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*(height)/(boardlength+2),height/(boardlength+2),color(50,50,255));            
