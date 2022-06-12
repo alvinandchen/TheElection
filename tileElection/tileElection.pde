@@ -4,21 +4,21 @@ static int blue;
 static int green;
 // takes boardlength value
 static int boardlength;
-static int peerinfluencefactor;
-static int wildfactor;
+static int peerinfluencefactor =1;
+static int wildfactor = 1;
 // direct influence code variables
 static int directinfluencefactor = 3;
 static int directColorMode;
 static int directInfluenceMode;
 static int directShape;
-static int directEffectiveness = 50;
+static int directEffectiveness = 100;
 static int directSpeed = 1;
 static boolean time;
 static float radius;
 // time variables for natural process
 static int savetime;
 static int naturalspeed = 1000;
-static int daysleft = 2;
+static int daysleft = 100;
 static boolean begin = true;
 static boolean end = false;
 // tileLand object used as the map
@@ -162,13 +162,33 @@ void endscreen(){
    textSize(30);
    text("Click To Run Simulation Again",320,650);
    if (mousePressed){
-     daysleft = 100;
      begin = true;
      end = false;
+     reset();
      delay(300);
    }
 }
   
+void reset(){
+  red = 0;
+  blue = 0;
+  green = 0;
+  peerinfluencefactor = 1;
+  wildfactor = 1;
+  directinfluencefactor = 3;
+  directColorMode = 0;
+  directInfluenceMode = 0;
+  directShape = 0;
+  directEffectiveness = 100;
+  directSpeed = 1;
+  time = false;
+  radius = 0;
+  savetime = 0;
+  naturalspeed = 1000;
+  daysleft = 100;
+  begin = true;
+  end = false;
+}
   
 void keyPressed(){
   if (key == '1'){

@@ -20,15 +20,15 @@ public class tileLand{
         // creates the proper number of tileSquares with proper x y and a random color (red or blue)
         int col = (int)random(1,4);
         if (col == 1){
-          tiles[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(50,50,255));
+          tiles[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(50,50,255),color(50,50,255));
           blue += 1;
         }
         else if (col == 2){
-          tiles[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(50,255,50));
+          tiles[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(50,255,50),color(50,255,50));
           green += 1;
         }
         else{
-          tiles[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(255,50,50));
+          tiles[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(255,50,50),color(255,50,50));
           red += 1;
         }
       }
@@ -81,7 +81,7 @@ public class tileLand{
           // runs the non-wild code
           // assigns a new color to the tile based on the majority color surrounding it
           if (redn > bluen*balancingfactor && redn > greenn*balancingfactor && tiles[i][j].c != color(255,50,50)){
-            tilesfuture[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(255,50,50));
+            tilesfuture[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(255,50,50),tiles[i][j].c);
             red ++;
             if (tiles[i][j].c == color(50,255,50)){
               green --;
@@ -91,7 +91,7 @@ public class tileLand{
             }
           }
           else if (bluen > redn*balancingfactor && bluen > greenn*balancingfactor && tiles[i][j].c != color(50,50,255)){
-            tilesfuture[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(50,50,255));
+            tilesfuture[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(50,50,255),tiles[i][j].c);
             blue ++;
             if (tiles[i][j].c == color(50,255,50)){
               green --;
@@ -101,7 +101,7 @@ public class tileLand{
             }
           }
           else if (greenn > redn*balancingfactor && greenn > bluen*balancingfactor && tiles[i][j].c != color(50,255,50)){
-            tilesfuture[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(50,255,50));
+            tilesfuture[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(50,255,50),tiles[i][j].c);
             green ++;
             if (tiles[i][j].c == color(255,50,50)){
               red --;
@@ -118,7 +118,7 @@ public class tileLand{
           // run the wild code (will assign a random color to that square)
           int rgb = (int)random(1,4);
           if (rgb == 1 && tiles[i][j].c != color(50,50,255)){
-              tilesfuture[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(50,50,255));
+              tilesfuture[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(50,50,255),tiles[i][j].c);
               blue ++;
               if (tiles[i][j].c == color(50,255,50)){
                 green --;
@@ -128,7 +128,7 @@ public class tileLand{
               }
           }
           else if (rgb == 2 && tiles[i][j].c != color(255,50,50)){
-              tilesfuture[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(255,50,50));
+              tilesfuture[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(255,50,50),tiles[i][j].c);
               red ++;
               if (tiles[i][j].c == color(50,255,50)){
                 green --;
@@ -138,7 +138,7 @@ public class tileLand{
               }
           }
           else if (rgb == 3 && tiles[i][j].c != color(50,255,50)){
-              tilesfuture[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(50,255,50));
+              tilesfuture[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(50,255,50),tiles[i][j].c);
               green ++;
               if (tiles[i][j].c == color(255,50,50)){
                 red --;
@@ -196,21 +196,21 @@ public class tileLand{
                   if (clr.equals("Blue")){
                     if (tiles[i+k][j+l].c != color(50,50,255)&& random(0,3000)>(3000-directEffectiveness)){
                       adding("blue",i+k,j+l);
-                      tiles[i+k][j+l] = new tileSquare((j+l+1)*(width-350)/(boardlength+2),(i+k+1)*height/(boardlength+2),height/(boardlength+2),color(50,50,255));            
+                      tiles[i+k][j+l] = new tileSquare((j+l+1)*(width-350)/(boardlength+2),(i+k+1)*height/(boardlength+2),height/(boardlength+2),color(50,50,255),tiles[i+k][j+l].c);            
                       
                     }
                   }
                   if (clr.equals("Red")){
                     if (tiles[i+k][j+l].c != color(255,50,50) && random(0,3000)>(3000-directEffectiveness)){
                       adding("red",i+k,j+l);
-                      tiles[i+k][j+l] = new tileSquare((j+l+1)*(width-350)/(boardlength+2),(i+k+1)*height/(boardlength+2),height/(boardlength+2),color(255,50,50));                
+                      tiles[i+k][j+l] = new tileSquare((j+l+1)*(width-350)/(boardlength+2),(i+k+1)*height/(boardlength+2),height/(boardlength+2),color(255,50,50),tiles[i+k][j+l].c);                
                       
                     }
                   }
                   if (clr.equals("Green")){
                     if (tiles[i+k][j+l].c != color(50,255,50) && random(0,3000)>(3000-directEffectiveness)){
                       adding("green",i+k,j+l);
-                      tiles[i+k][j+l] = new tileSquare((j+l+1)*(width-350)/(boardlength+2),(i+k+1)*height/(boardlength+2),height/(boardlength+2),color(50,255,50));                
+                      tiles[i+k][j+l] = new tileSquare((j+l+1)*(width-350)/(boardlength+2),(i+k+1)*height/(boardlength+2),height/(boardlength+2),color(50,255,50),tiles[i+k][j+l].c);                
                       
                     }
                   }
@@ -226,19 +226,19 @@ public class tileLand{
             if (clr.equals("Blue")){
               if (tiles[i][j].c != color(50,50,255) && random(0,3000)>(3000-directEffectiveness)){
                 adding("blue",i,j);
-                tiles[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*(height)/(boardlength+2),height/(boardlength+2),color(50,50,255));            
+                tiles[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*(height)/(boardlength+2),height/(boardlength+2),color(50,50,255),tiles[i][j].c);            
               }
             }
             if (clr.equals("Red")){
               if (tiles[i][j].c != color(255,50,50) && random(0,3000)>(3000-directEffectiveness)){
                 adding("red",i,j);
-                tiles[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(255,50,50));
+                tiles[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(255,50,50),tiles[i][j].c);
               }
             }
             if (clr.equals("Green")){
               if (tiles[i][j].c != color(50,255,50) && random(0,3000)>(3000-directEffectiveness)){
                 adding("green",i,j);
-                tiles[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(50,255,50));
+                tiles[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(50,255,50),tiles[i][j].c);
               }
             }
           }
