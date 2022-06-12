@@ -41,11 +41,15 @@ public class tileLand{
       for (int j=0; j<boardlength; j+=1){
         // counts the number of red and blue neighbors and also counts itself
         int redn = 0;
+        int greenn = 0;
         int bluen = 0;
         if (tiles[i][j].c == color(255,50,50)){
           redn +=2;
         }
-        else{
+        if (tiles[i][j].c == color(50,255,50)){
+          greenn += 2;
+        }
+        if (tiles[i][j].c == color(50,50,255)){
           bluen +=2;
         }
         // counts in a given area size
@@ -57,6 +61,9 @@ public class tileLand{
               }
               if(tiles[i + k][j + l].c == color(50,50,255)){
                 bluen++;
+              }
+              if(tiles[i + k][j + l].c == color(50,255,50)){
+                greenn++;
               }
             }
           } 
@@ -73,15 +80,35 @@ public class tileLand{
         if (chosencolor >= wildfactor){
           // runs the non-wild code
           // assigns a new color to the tile based on the majority color surrounding it
-          if (redn > bluen*balancingfactor && tiles[i][j].c == color(50,50,255)){
+          if (redn > bluen*balancingfactor && redn > greenn*balancingfactor && tiles[i][j].c != color(255,50,50)){
             tilesfuture[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(255,50,50));
             red ++;
-            blue --; 
+            if (tiles[i][j].c == color(50,255,50)){
+              green --;
+            }
+            if (tiles[i][j].c == color(50,50,255)){
+              blue --;
+            }
           }
-          else if (bluen > redn*balancingfactor && tiles[i][j].c == color(255,50,50)){
+          else if (bluen > redn*balancingfactor && bluen > greenn*balancingfactor && tiles[i][j].c != color(50,50,255)){
             tilesfuture[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(50,50,255));
             blue ++;
-            red --;
+            if (tiles[i][j].c == color(50,255,50)){
+              green --;
+            }
+            if (tiles[i][j].c == color(255,50,50)){
+              red --;
+            }
+          }
+          else if (greenn > redn*balancingfactor && greenn > bluen*balancingfactor && tiles[i][j].c != color(50,255,50)){
+            tilesfuture[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(50,255,50));
+            green ++;
+            if (tiles[i][j].c == color(255,50,50)){
+              red --;
+            }
+            if (tiles[i][j].c == color(50,50,255)){
+              blue --;
+            }
           }
           else{
             tilesfuture[i][j] = tiles[i][j];
