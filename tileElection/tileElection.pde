@@ -1,6 +1,7 @@
 // added for count 
 static int red;
 static int blue;
+static int green;
 // takes boardlength value
 static int boardlength;
 static int peerinfluencefactor;

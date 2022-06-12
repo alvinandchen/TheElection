@@ -18,10 +18,14 @@ public class tileLand{
     for(int i=0; i<boardlength; i++){
       for(int j=0; j<boardlength; j++){
         // creates the proper number of tileSquares with proper x y and a random color (red or blue)
-        int col = (int)random(1,3);
+        int col = (int)random(1,4);
         if (col == 1){
           tiles[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(50,50,255));
           blue += 1;
+        }
+        else if (col == 2){
+          tiles[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(50,255,50));
+          green += 1;
         }
         else{
           tiles[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(255,50,50));
