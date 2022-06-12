@@ -78,6 +78,8 @@ void draw() {
     down += 30;
     text("Red Count: " + red, 770, down);
     down += 30;
+    text("Green Count: " + green, 770, down);
+    down += 30;
     text("Blue Count: " + blue, 770, down);
     down += 30;
     text("Days Left: " + daysleft, 770, down);
