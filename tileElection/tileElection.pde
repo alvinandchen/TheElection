@@ -128,13 +128,7 @@ void draw() {
     text("(-,=) Natural Speed: " + 5/(double)(naturalspeed/100), 770, down);
     
     if (mousePressed){
-      if (directColorMode == 1){
-        tl.directInfluence(mouseX,mouseY,"Blue",time);
-      }
-      
-      else{
-        tl.directInfluence(mouseX,mouseY,"Red",time);
-      }
+      tl.directInfluence();
     }
     if (!mousePressed || !time){
       radius = 0;

@@ -156,7 +156,14 @@ public class tileLand{
     // original array takes new reference to the temp array
     tiles = tilesfuture;
   }
-  void directInfluence(float x, float y, String clr, boolean time){
+  void directInfluence(){
+    String clr;
+    if (directColorMode == 1){
+      clr = "Blue";
+    }
+    else{
+      clr = "Red";
+    }
     //check if square or circle influence area chosen
     boolean square = false;
     boolean circle = false;
@@ -179,7 +186,7 @@ public class tileLand{
     
         // square influence code
         if (square){
-          if ((j+1)*(width-350)/(boardlength+2)<x && (j+2)*(width-350)/(boardlength+2)>x && (i+1)*height/(boardlength+2)<y&& (i+2)*height/(boardlength+2)>y){
+          if ((j+1)*(width-350)/(boardlength+2)<mouseX && (j+2)*(width-350)/(boardlength+2)>mouseX && (i+1)*height/(boardlength+2)<mouseY&& (i+2)*height/(boardlength+2)>mouseY){
             for (int k = -((int)radius); k <= ((int)radius); k++){
               for (int l = -((int)radius); l <= ((int)radius); l++){
                 if ((i+k>=0 && i+k<boardlength) && (j+l>=0 && j+l<boardlength)){     
@@ -205,7 +212,7 @@ public class tileLand{
         
         // circle influence code
         if (circle){
-          if (radius * (750/(boardlength+2)) >= sqrt( pow(x-((float)j+1.5)*((float)750)/(boardlength+2),2) + pow(y-((float)(i)+1.5)*(((float)750)/(boardlength+2)),2) ) ){
+          if (radius * (750/(boardlength+2)) >= sqrt( pow(mouseX-((float)j+1.5)*((float)750)/(boardlength+2),2) + pow(mouseY-((float)(i)+1.5)*(((float)750)/(boardlength+2)),2) ) ){
             if (clr.equals("Blue")){
               if (tiles[i][j].c == color(255,50,50) && random(0,3000)>(3000-directEffectiveness)){
                 tiles[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*(height)/(boardlength+2),height/(boardlength+2),color(50,50,255));            
