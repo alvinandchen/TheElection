@@ -12,14 +12,12 @@ static int directInfluenceMode;
 static int directShape;
 static int directEffectiveness = 100;
 static int directSpeed = 1;
-static boolean time;
+static boolehttps:
 static float radius;
 // time variables for natural process
 static int savetime;
 static int naturalspeed = 1000;
-static int daysleft = 5;
-static boolean begin = true;
-static boolean end = true;
+static int daysleft = 100;
 // tileLand object used as the map
 tileLand tl;
 
@@ -30,18 +28,6 @@ void setup(){
 
 void draw() {
 //  daysleft = 100 - millis()/naturalspeed;
-  if(begin){ 
-    background(0);
-    fill(255);
-    textSize(15);
-    rect(750,0,1100,750);
-    fill(0);
-    int down = 30;
-    textSize(20);
-    text("CHOOSE YOUR PARAMETERS", 770, down);  
-  }
-  
-  else{
   background(0);
   tl.display();
   fill(255);
@@ -114,24 +100,13 @@ void draw() {
   if (!mousePressed || !time){
     radius = 0;
   }
-
   int passtime = millis() - savetime;
   if (passtime > naturalspeed) {
-    if (daysleft > 0){
-      tl.naturalprocess();
-      savetime = millis();
-      daysleft --; 
-    }
-    
-    else{
-       fill(#34568B);
-       rect(0,0,750,750);
-       //filler text for end, add restart functionality
-    }
-  }
+    tl.naturalprocess();
+    savetime = millis();
+    daysleft --;
   }
 }
-
   
 void keyPressed(){
   if (key == '1'){
@@ -191,8 +166,5 @@ void keyPressed(){
   }
   if (key == '-'){
     naturalspeed += 100;
-  }
-  if (key == '+'){
-    naturalspeed -= 100;
   }
 }
