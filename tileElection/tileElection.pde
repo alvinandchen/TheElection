@@ -18,6 +18,8 @@ static float radius;
 static int savetime;
 static int naturalspeed = 1000;
 static int daysleft = 5;
+static boolean begin = true;
+static boolean end = true;
 // tileLand object used as the map
 tileLand tl;
 
@@ -28,6 +30,18 @@ void setup(){
 
 void draw() {
 //  daysleft = 100 - millis()/naturalspeed;
+  if(begin){ 
+    background(0);
+    fill(255);
+    textSize(15);
+    rect(750,0,1100,750);
+    fill(0);
+    int down = 30;
+    textSize(20);
+    text("CHOOSE YOUR PARAMETERS", 770, down);  
+  }
+  
+  else{
   background(0);
   tl.display();
   fill(255);
@@ -100,6 +114,7 @@ void draw() {
   if (!mousePressed || !time){
     radius = 0;
   }
+
   int passtime = millis() - savetime;
   if (passtime > naturalspeed) {
     if (daysleft > 0){
@@ -107,12 +122,16 @@ void draw() {
       savetime = millis();
       daysleft --; 
     }
+    
     else{
        fill(#34568B);
        rect(0,0,750,750);
+       //filler text for end, add restart functionality
     }
   }
+  }
 }
+
   
 void keyPressed(){
   if (key == '1'){
