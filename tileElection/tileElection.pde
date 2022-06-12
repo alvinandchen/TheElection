@@ -18,7 +18,7 @@ static float radius;
 // time variables for natural process
 static int savetime;
 static int naturalspeed = 1000;
-static int daysleft = 100;
+static int daysleft = 2;
 static boolean begin = true;
 static boolean end = false;
 // tileLand object used as the map
@@ -43,14 +43,14 @@ void beginningscreen(){
   text("Click Anywhere On The Screen To Determine Board Size",155,250);
   textSize(20);
   text("the more left the smaller, the more right the larger (numbers provided for appx reference)",120,280);
-  text("15",30,500);
+  text("15",35,500);
   text("50",140,500);
-  text("100",270,500);
-  text("150",430,500);
+  text("100",277,500);
+  text("150",427,500);
   text("200",575,500);
   text("250",720,500);
   text("300",865,500);
-  text("350",1020,500);
+  text("350",1015,500);
   if (mousePressed){
     tl = new tileLand(((int)(mouseX * ((double)750/1100)))/2);
     begin = false;
@@ -58,7 +58,8 @@ void beginningscreen(){
 }
 
 void draw() {
-  if (begin){ 
+  if (begin && !end){ 
+    background(0);
     beginningscreen();
   }
   
@@ -139,24 +140,35 @@ void draw() {
   
     int passtime = millis() - savetime;
     if (passtime > naturalspeed) {
-      if (daysleft > 0){
+      if (daysleft > 1){
         tl.naturalprocess();
         savetime = millis();
         daysleft --; 
       }
       else{
-        daysleft--;
-        //end = true;
+        end = true;
       }
     }
   }
   else{
-   fill(#34568B);
-   rect(0,0,750,750);
-   //filler text for end, add restart functionality
+    endscreen();
   }
 }
 
+void endscreen(){
+   fill(#34568B);
+   rect(0,0,1150,750);
+   fill(255);
+   textSize(30);
+   text("Click To Run Simulation Again",320,650);
+   if (mousePressed){
+     daysleft = 100;
+     begin = true;
+     end = false;
+     delay(300);
+   }
+}
+  
   
 void keyPressed(){
   if (key == '1'){
