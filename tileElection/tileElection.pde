@@ -1,6 +1,7 @@
 // added for count 
 static int red;
 static int blue;
+static int green;
 // takes boardlength value
 static int boardlength;
 static int peerinfluencefactor;
@@ -10,128 +11,164 @@ static int directinfluencefactor = 3;
 static int directColorMode;
 static int directInfluenceMode;
 static int directShape;
-static int directEffectiveness = 100;
+static int directEffectiveness = 50;
 static int directSpeed = 1;
 static boolean time;
 static float radius;
 // time variables for natural process
 static int savetime;
 static int naturalspeed = 1000;
-static int daysleft = 5;
+static int daysleft = 2;
 static boolean begin = true;
-static boolean end = true;
+static boolean end = false;
 // tileLand object used as the map
 tileLand tl;
 
 void setup(){
   size(1100,750);
-  tl = new tileLand(100);
+  background(0);
+}
+
+void beginningscreen(){
+  fill(0,0,255);
+  textSize(100);
+  text("ELECTION", 20, 100);
+  fill(250,0,0);
+  text("SIMULATOR", 520, 100);    
+  textSize(50);
+  fill(0,255,0);
+  text("CHOOSE YOUR BOARD SIZE", 200, 200);  
+  fill(255);
+  textSize(30);
+  text("Click Anywhere On The Screen To Determine Board Size",155,250);
+  textSize(20);
+  text("the more left the smaller, the more right the larger (numbers provided for appx reference)",120,280);
+  text("15",35,500);
+  text("50",140,500);
+  text("100",277,500);
+  text("150",427,500);
+  text("200",575,500);
+  text("250",720,500);
+  text("300",865,500);
+  text("350",1015,500);
+  if (mousePressed){
+    tl = new tileLand(((int)(mouseX * ((double)750/1100)))/2);
+    begin = false;
+  }
 }
 
 void draw() {
-//  daysleft = 100 - millis()/naturalspeed;
-  if(begin){ 
+  if (begin && !end){ 
     background(0);
+    beginningscreen();
+  }
+  
+  else if (!begin && !end){
+    background(0);
+    tl.display();
     fill(255);
     textSize(15);
     rect(750,0,1100,750);
     fill(0);
     int down = 30;
     textSize(20);
-    text("CHOOSE YOUR PARAMETERS", 770, down);  
-  }
-  
-  else{
-  background(0);
-  tl.display();
-  fill(255);
-  textSize(15);
-  rect(750,0,1100,750);
-  fill(0);
-  int down = 30;
-  textSize(20);
-  text("THE ELECTION", 770, down);  
-  down += 30;
-  textSize(15);
-  text("Map Length: " + boardlength, 770, down);
-  down += 30;
-  text("Red Count: " + red, 770, down);
-  down += 30;
-  text("Blue Count: " + blue, 770, down);
-  down += 30;
-  text("Days Left: " + daysleft, 770, down);
-  down += 50;
-  textSize(20);
-  text("NATURAL PROCESS VARIABLES", 770, down);
-  down += 30;
-  textSize(15);
-  text("(1,2) Peer Influence: " + peerinfluencefactor, 770, down);
-  down += 30;
-  text("(3,4) Wild Factor: " + wildfactor, 770, down);
-  down += 50;
-  textSize(20);
-  text("ARTIFICAL PROCESS VARIABLES", 770, down);  
-  down += 30;
-  textSize(15);
-  if (directColorMode == 0){
-    text("(c) Color of Influence: Red", 770, down);
-  }
-  if (directColorMode == 1){
-    text("(c) Color of Influence: Blue", 770, down);
-  }
-  down += 30;
-  if (directShape == 0){
-    text("(s) Shape of Influence: Circle", 770, down);
-  }
-  else{
-    text("(s) Shape of Influence: Square", 770, down);
-  }
-  down += 30;
-  if (time){
-    text("(r) Radius Mode: TIME", 770, down);
-  }
-  else{
-    text("(r) Radius Mode: SET", 770, down);
-  }  
-  down += 30;
-  text("(5,6) Radius of Influence (set): " + directinfluencefactor, 770, down);
-  down += 30;
-  text("(auto) Radius of Influence (time): " + (int) radius, 770, down);
-  down += 30;
-  text("(7,8) Effectiveness of Influence: " + directEffectiveness, 770, down);
-  down += 30;
-  text("(9,0) Speed of Influence: " + directSpeed, 770, down);
-  
-  if (mousePressed){
+    text("THE ELECTION", 770, down);  
+    down += 30;
+    textSize(15);
+    text("Map Length: " + boardlength, 770, down);
+    down += 30;
+    text("Red Count: " + red, 770, down);
+    down += 30;
+    text("Green Count: " + green, 770, down);
+    down += 30;
+    text("Blue Count: " + blue, 770, down);
+    down += 30;
+    text("Days Left: " + daysleft, 770, down);
+    down += 50;
+    textSize(20);
+    text("NATURAL PROCESS VARIABLES", 770, down);
+    down += 30;
+    textSize(15);
+    text("(1,2) Peer Influence: " + peerinfluencefactor, 770, down);
+    down += 30;
+    text("(3,4) Wild Factor: " + wildfactor, 770, down);
+    down += 50;
+    textSize(20);
+    text("ARTIFICAL PROCESS VARIABLES", 770, down);  
+    down += 30;
+    textSize(15);
+    if (directColorMode == 0){
+      text("(c) Color of Influence: Red", 770, down);
+    }
     if (directColorMode == 1){
-      tl.directInfluence(mouseX,mouseY,"Blue",time, directinfluencefactor, directShape, directEffectiveness);
+      text("(c) Color of Influence: Blue", 770, down);
     }
-    
+    if (directColorMode == 2){
+      text("(c) Color of Influence: Green", 770, down);
+    }
+    down += 30;
+    if (directShape == 0){
+      text("(s) Shape of Influence: Circle", 770, down);
+    }
     else{
-      tl.directInfluence(mouseX,mouseY,"Red",time, directinfluencefactor, directShape, directEffectiveness);
+      text("(s) Shape of Influence: Square", 770, down);
     }
-  }
-  if (!mousePressed || !time){
-    radius = 0;
-  }
-
-  int passtime = millis() - savetime;
-  if (passtime > naturalspeed) {
-    if (daysleft > 0){
-      tl.naturalprocess();
-      savetime = millis();
-      daysleft --; 
+    down += 30;
+    if (time){
+      text("(r) Radius Mode: TIME", 770, down);
     }
-    
     else{
-       fill(#34568B);
-       rect(0,0,750,750);
-       //filler text for end, add restart functionality
+      text("(r) Radius Mode: SET", 770, down);
+    }  
+    down += 30;
+    text("(5,6) Radius of Influence (set): " + directinfluencefactor, 770, down);
+    down += 30;
+    text("(auto) Radius of Influence (time): " + (int) radius, 770, down);
+    down += 30;
+    text("(7,8) Effectiveness of Influence: " + directEffectiveness, 770, down);
+    down += 30;
+    text("(9,0) Speed of Influence: " + directSpeed, 770, down);
+    down += 30;
+    text("(-,=) Natural Speed: " + 5/(double)(naturalspeed/100), 770, down);
+    
+    if (mousePressed){
+      tl.directInfluence();
+    }
+    if (!mousePressed || !time){
+      radius = 0;
+    }
+  
+    int passtime = millis() - savetime;
+    if (passtime > naturalspeed) {
+      if (daysleft > 1){
+        tl.naturalprocess();
+        savetime = millis();
+        daysleft --; 
+      }
+      else{
+        end = true;
+      }
     }
   }
+  else{
+    endscreen();
   }
 }
 
+void endscreen(){
+   fill(#34568B);
+   rect(0,0,1150,750);
+   fill(255);
+   textSize(30);
+   text("Click To Run Simulation Again",320,650);
+   if (mousePressed){
+     daysleft = 100;
+     begin = true;
+     end = false;
+     delay(300);
+   }
+}
+  
   
 void keyPressed(){
   if (key == '1'){
@@ -152,7 +189,7 @@ void keyPressed(){
   
   if (key == 'c'){
     directColorMode ++;
-    if (directColorMode == 2){
+    if (directColorMode == 3){
       directColorMode = 0;
     }
   }
@@ -190,9 +227,13 @@ void keyPressed(){
     directSpeed --;
   }
   if (key == '-'){
-    naturalspeed += 100;
+    if (naturalspeed<2500){
+      naturalspeed += 100;
+    }
   }
-  if (key == '+'){
-    naturalspeed -= 100;
+  if (key == '='){
+    if (naturalspeed>100){
+      naturalspeed -= 100;
+    }
   }
 }
