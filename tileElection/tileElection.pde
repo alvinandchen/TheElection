@@ -129,11 +129,11 @@ void draw() {
     
     if (mousePressed){
       if (directColorMode == 1){
-        tl.directInfluence(mouseX,mouseY,"Blue",time, directinfluencefactor, directShape, directEffectiveness);
+        tl.directInfluence(mouseX,mouseY,"Blue",time);
       }
       
       else{
-        tl.directInfluence(mouseX,mouseY,"Red",time, directinfluencefactor, directShape, directEffectiveness);
+        tl.directInfluence(mouseX,mouseY,"Red",time);
       }
     }
     if (!mousePressed || !time){
