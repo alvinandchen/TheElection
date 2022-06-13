@@ -2,7 +2,7 @@
 We will be creating a democratic election simulator, where the user has the jurisdiction to alter parameters that influence the election outcome. The map will be a square board divided into cells that represent city blocks. These blocks will have three states: red, blue or green. The user has the option to change the parameters as follows: map size, population influence, spontaneity, and election speed, and other factors. After the initial configuration is set, the simulation will run in accordance with a set in-game timer. At this point, the user can manually influence (our artificial processes) the simulation by clicking on city blocks/clusters of city blocks, thereby influencing the political affiliations of that portion. The election will run for 100 days,  and the three voting systems represented are ranked choice, popular, and electoral (districts are 5x5 cells).
 
 <br/>
-##Prototype Document
+## Prototype Document
 https://docs.google.com/document/d/1IMG-1jxzZRgsRCG8IJXrjXYCTqxE4GwWS1KqnZR8yFk/edit
 ## Compile/Run Instructions:
 1. Clone the repository
