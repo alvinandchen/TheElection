@@ -49,7 +49,7 @@ void beginningscreen(){
   textSize(30);
   text("Click Anywhere On The Screen To Determine Board Size",190,250);
   textSize(20);
-  text("the further left you click, the smaller the board size. (the numbers are provided for size reference)",145,280);
+  text("the further left you click, the smaller the board size (the numbers are provided for incremental size reference)",100,280);
   text("15",35,500);
   text("50",140,500);
   text("100",277,500);
