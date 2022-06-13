@@ -2,9 +2,6 @@
 static int red;
 static int blue;
 static int green;
-static int reddis;
-static int bluedis;
-static int greendis;
 static String out = "";
 static String popwinner;
 static String diswinner;
@@ -94,12 +91,6 @@ void draw() {
     down += 30;
     text("Blue Individual Count: " + blue, 770, down);
     down += 30;
-    text("Red District Count: " + reddis, 770, down);
-    down += 30;
-    text("Green District Count: " + greendis, 770, down);
-    down += 30;
-    text("Blue District Count: " + bluedis, 770, down);
-    down += 30;
     if (districtlineson){
       text("District Lines: ON", 770, down);
     }
@@ -164,10 +155,6 @@ void draw() {
     if (districtlineson){
       drawdistrictlines();
     }
-    reddis = 0;
-    bluedis = 0;
-    greendis = 0;
-    tl.countdistrict(boardlength/5);
     int passtime = millis() - savetime;
     if (passtime > naturalspeed) {
       if (daysleft > 1){
