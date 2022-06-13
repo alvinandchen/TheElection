@@ -95,10 +95,10 @@ void draw() {
     text("Blue Individual Count: " + blue, 770, down);
     down += 30;
     if (districtlineson){
-      text("District Lines: ON", 770, down);
+      text("(d) District Lines: ON", 770, down);
     }
     else{
-      text("District Lines: OFF", 770, down);
+      text("(d) District Lines: OFF", 770, down);
     }
     down += 30;
     text("Days Left: " + daysleft, 770, down);
@@ -292,7 +292,7 @@ void keyPressed(){
   if (key == '5'){
     directinfluencefactor ++;
   }
-  if (key == '6'){
+  if (key == '6' && directinfluencefactor > 0){
     directinfluencefactor --;
   }
   if (key == 's'){
@@ -304,13 +304,13 @@ void keyPressed(){
   if (key == '7'){
     directEffectiveness ++;
   }
-  if (key == '8'){
+  if (key == '8' && directEffectiveness > 0){
     directEffectiveness --;
   }
   if (key == '9'){
     directSpeed ++;
   }
-  if (key == '0'){
+  if (key == '0' && directSpeed > 0){
     directSpeed --;
   }
   if (key == '-'){
