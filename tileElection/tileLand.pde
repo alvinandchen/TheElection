@@ -117,7 +117,7 @@ public class tileLand{
         else{
           // run the wild code (will assign a random color to that square)
           int rgb = (int)random(1,4);
-          if (rgb == 1 && tiles[i][j].c != color(50,50,255)){
+          if (rgb == 1 && tiles[i][j].c != color(50,50,255) && !out.equals("blue")){
               tilesfuture[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(50,50,255),tiles[i][j].c);
               blue ++;
               if (tiles[i][j].c == color(50,255,50)){
@@ -127,7 +127,7 @@ public class tileLand{
                 red --;
               }
           }
-          else if (rgb == 2 && tiles[i][j].c != color(255,50,50)){
+          else if (rgb == 2 && tiles[i][j].c != color(255,50,50) && !out.equals("red")){
               tilesfuture[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(255,50,50),tiles[i][j].c);
               red ++;
               if (tiles[i][j].c == color(50,255,50)){
@@ -137,7 +137,7 @@ public class tileLand{
                 blue --;
               }
           }
-          else if (rgb == 3 && tiles[i][j].c != color(50,255,50)){
+          else if (rgb == 3 && tiles[i][j].c != color(50,255,50) && !out.equals("green")){
               tilesfuture[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(50,255,50),tiles[i][j].c);
               green ++;
               if (tiles[i][j].c == color(255,50,50)){

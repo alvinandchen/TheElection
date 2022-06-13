@@ -2,7 +2,8 @@
 static int red;
 static int blue;
 static int green;
-static String out;
+static String out = "";
+static String winner = "";
 // takes boardlength value
 static int boardlength;
 static int peerinfluencefactor;
