@@ -91,12 +91,6 @@ void draw() {
     down += 30;
     text("Blue Individual Count: " + blue, 770, down);
     down += 30;
-    text("Red District Count: " + reddis, 770, down);
-    down += 30;
-    text("Green District Count: " + greendis, 770, down);
-    down += 30;
-    text("Blue District Count: " + bluedis, 770, down);
-    down += 30;
     if (districtlineson){
       text("District Lines: ON", 770, down);
     }
