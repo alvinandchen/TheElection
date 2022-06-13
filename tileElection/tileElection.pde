@@ -1,13 +1,16 @@
-// added for count 
+// added for color count 
 static int red;
 static int blue;
 static int green;
+//district count
 static int reddis;
 static int bluedis;
 static int greendis;
 static String out = "";
+//winners
 static String popwinner;
 static String diswinner;
+//border lines
 static boolean districtlineson;
 // takes boardlength value
 static int boardlength;
