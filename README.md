@@ -64,3 +64,82 @@ Major prototype review and brushing up with evaluation of the demo code. Assiste
 
 Craig Chen:<br/>
 Finished the proper display of all the key clicked variables along with simulation display variables. Speculating for possibilities for mechanisms for gerrymandering code.
+
+### 5/31
+Alvin Chen:<br/>
+Brainstorming ideas to implement after demo
+<br/>
+
+Craig Chen:<br/>
+Tried to think of possible ways to implement gerrymandering
+### 6/1
+Alvin Chen:<br/>
+Brainstormed idea of rank system and district system for election to implement after demo aside from just popular vote
+<br/>
+
+Craig Chen:<br/>
+Continued to ponder possible ways to implement gerrymandering. Perhaps a drawing line method that could be used then with floodfill to partition districts
+### 6/2
+Alvin Chen:<br/>
+Researched how to take input for processing program
+<br/>
+
+Craig Chen:<br/>
+Contemplated how to create randomly generated districts that could be modified
+### 6/3
+Alvin Chen:<br/>
+Questioning possibility of actually establishing gerrymandering, Triangle formulas to partition enclosed areas to establish districts.
+<br/>
+
+Craig Chen:<br/>
+Decided to only take one input that being the board size. This would be done with mousepressed and mouseX coordinate
+### 6/6
+Alvin Chen:<br/>
+Constructing a pseudo time system within the program. This would be in terms of / units of days, specifically 100
+
+<br/>
+
+Craig Chen:
+Resolved float error and order of operations bug in circle code that became an issue again
+### 6/7
+Alvin Chen:<br/>
+Assisted with the mechanizing of the internal time clock, utilized millis()
+<br/>
+
+Craig Chen:<br/>
+Reautomated natural process to take effect every pseudo day rather than every space click. This would allow for a more natural and efficient sequence of operations
+### 6/8
+Alvin Chen:<br/>
+“Rank System” implemented where on day 25 the least popular party is removed and then the individuals from the party change political affiliation based on last color or random
+<br/>
+
+Craig Chen:<br/>
+Updated the use of millis() and incorporated new variables in order to maintain the function of the time system even with a decrease and increase natural speed function
+### 6/9
+Alvin Chen:<br/>
+Created District Line and District Counter code using approximately the same backbone of code (for loops with multiples of 5)
+
+
+<br/>
+
+Craig Chen:<br/>
+Finished the beginning screen with all the text boxes and proper spacing to create accurate input application
+
+### 6/10
+Alvin Chen:<br/>
+Incorporated the restart functionality for the end screen and the resetpresets method that reverts all variables back to default before running sim again
+
+
+<br/>
+
+Craig Chen:<br/>
+Reviewed Key Pressed and added upper and lower bounds. Set up the design of the end screen
+
+### 6/12
+Alvin Chen:<br/>
+Tested simulation and finishing up work on the prototype
+
+<br/>
+
+Craig Chen:<br/>
+Tested simulation and finishing up work on the prototype
