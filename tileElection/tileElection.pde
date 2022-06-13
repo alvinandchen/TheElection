@@ -5,6 +5,7 @@ static int green;
 static String out = "";
 static String popwinner;
 static String diswinner;
+static boolean districtlineson;
 // takes boardlength value
 static int boardlength;
 static int peerinfluencefactor = 1;
@@ -90,6 +91,13 @@ void draw() {
     down += 30;
     text("Blue Count: " + blue, 770, down);
     down += 30;
+    if (districtlineson){
+      text("District Lines: ON", 770, down);
+    }
+    else{
+      text("District Lines: OFF", 770, down);
+    }
+    down += 30;
     text("Days Left: " + daysleft, 770, down);
     down += 50;
     textSize(20);
@@ -144,7 +152,9 @@ void draw() {
     if (!mousePressed || !time){
       radius = 0;
     }
-    drawdistrictlines();
+    if (districtlineson){
+      drawdistrictlines();
+    }
     int passtime = millis() - savetime;
     if (passtime > naturalspeed) {
       if (daysleft > 1){
@@ -166,7 +176,15 @@ void draw() {
 }
 
 void drawdistrictlines(){
-  int numofdistricts = boardlength
+  int districtsize = boardlength/5;
+  for (int i = 0; i < districtsize; i++){
+    for (int j = 0; j < districtsize; j++){
+      noFill();
+      stroke(color(255));
+      square((5*j+1)*(width-350)/(boardlength+2),(5*i+1)*height/(boardlength+2),5*height/(boardlength+2));
+    }
+  }
+  stroke(0);
 }
 
 void endscreen(){
@@ -232,6 +250,10 @@ void keyPressed(){
   
   if (key == '4' && wildfactor != 0){
     wildfactor --;
+  }
+
+  if (key == 'd'){
+    districtlineson = !districtlineson;
   }
   
   if (key == 'c'){
