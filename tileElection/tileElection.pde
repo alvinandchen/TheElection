@@ -2,23 +2,30 @@
 static int red;
 static int blue;
 static int green;
+static int reddis;
+static int bluedis;
+static int greendis;
+static String out = "";
+static String popwinner;
+static String diswinner;
+static boolean districtlineson;
 // takes boardlength value
 static int boardlength;
-static int peerinfluencefactor;
-static int wildfactor;
+static int peerinfluencefactor = 1;
+static int wildfactor = 1;
 // direct influence code variables
 static int directinfluencefactor = 3;
 static int directColorMode;
 static int directInfluenceMode;
 static int directShape;
-static int directEffectiveness = 50;
+static int directEffectiveness = 100;
 static int directSpeed = 1;
 static boolean time;
 static float radius;
 // time variables for natural process
 static int savetime;
-static int naturalspeed = 1000;
-static int daysleft = 2;
+static int naturalspeed = 500;
+static int daysleft = 5;
 static boolean begin = true;
 static boolean end = false;
 // tileLand object used as the map
@@ -52,7 +59,11 @@ void beginningscreen(){
   text("300",865,500);
   text("350",1015,500);
   if (mousePressed){
-    tl = new tileLand(((int)(mouseX * ((double)750/1100)))/2);
+    int size = 5*((((int)(mouseX * ((double)750/1100)))/2)/5);    
+    if (size == 0){
+      size = 5;
+    }
+    tl = new tileLand(size);
     begin = false;
   }
 }
@@ -77,11 +88,24 @@ void draw() {
     textSize(15);
     text("Map Length: " + boardlength, 770, down);
     down += 30;
-    text("Red Count: " + red, 770, down);
+    text("Red Individual Count: " + red, 770, down);
     down += 30;
-    text("Green Count: " + green, 770, down);
+    text("Green Individual Count: " + green, 770, down);
     down += 30;
-    text("Blue Count: " + blue, 770, down);
+    text("Blue Individual Count: " + blue, 770, down);
+    down += 30;
+    text("Red District Count: " + reddis, 770, down);
+    down += 30;
+    text("Green District Count: " + greendis, 770, down);
+    down += 30;
+    text("Blue District Count: " + bluedis, 770, down);
+    down += 30;
+    if (districtlineson){
+      text("District Lines: ON", 770, down);
+    }
+    else{
+      text("District Lines: OFF", 770, down);
+    }
     down += 30;
     text("Days Left: " + daysleft, 770, down);
     down += 50;
@@ -137,10 +161,19 @@ void draw() {
     if (!mousePressed || !time){
       radius = 0;
     }
-  
+    if (districtlineson){
+      drawdistrictlines();
+    }
+    reddis = 0;
+    bluedis = 0;
+    greendis = 0;
+    tl.countdistrict(boardlength/5);
     int passtime = millis() - savetime;
     if (passtime > naturalspeed) {
       if (daysleft > 1){
+        if (daysleft == 26){
+          tl.rankremove();
+        }
         tl.naturalprocess();
         savetime = millis();
         daysleft --; 
@@ -155,20 +188,80 @@ void draw() {
   }
 }
 
+void drawdistrictlines(){
+  int districtsize = boardlength/5;
+  for (int i = 0; i < districtsize; i++){
+    for (int j = 0; j < districtsize; j++){
+      noFill();
+      stroke(color(255));
+      square((5*j+1)*(width-350)/(boardlength+2),(5*i+1)*height/(boardlength+2),5*height/(boardlength+2));
+    }
+  }
+  stroke(0);
+}
+
 void endscreen(){
    fill(#34568B);
    rect(0,0,1150,750);
    fill(255);
+   if (green >= blue && green >= red){
+     popwinner = "Green";
+   }
+   else if (red >= blue && red >= green){
+     popwinner = "Red";
+   }
+   else{
+     popwinner = "Blue";
+   }
+   tl.countdistrict(boardlength/5);
+   if (greendis >= bluedis && greendis >= reddis){
+     diswinner = "Green";
+   }
+   else if (reddis >= bluedis && reddis >= greendis){
+     diswinner = "Red";
+   }
+   else{
+     diswinner = "Blue";
+   }   
+   textSize(60);
+   text("Popular Vote Winner: " + popwinner,50,100);
+   text("District Winner: " + diswinner,50,200);
    textSize(30);
+   fill(255,50,50);
    text("Click To Run Simulation Again",320,650);
    if (mousePressed){
-     daysleft = 100;
      begin = true;
      end = false;
+     resetpresets();
      delay(300);
    }
 }
   
+void resetpresets(){
+  red = 0;
+  blue = 0;
+  green = 0;
+  reddis = 0;
+  bluedis = 0;
+  greendis = 0;
+  out = "";
+  districtlineson = false; 
+  peerinfluencefactor = 1;
+  wildfactor = 1;
+  directinfluencefactor = 3;
+  directColorMode = 0;
+  directInfluenceMode = 0;
+  directShape = 0;
+  directEffectiveness = 100;
+  directSpeed = 1;
+  time = false;
+  radius = 0;
+  savetime = 0;
+  naturalspeed = 500;
+  daysleft = 100;
+  begin = true;
+  end = false;
+}
   
 void keyPressed(){
   if (key == '1'){
@@ -185,6 +278,10 @@ void keyPressed(){
   
   if (key == '4' && wildfactor != 0){
     wildfactor --;
+  }
+
+  if (key == 'd'){
+    districtlineson = !districtlineson;
   }
   
   if (key == 'c'){
