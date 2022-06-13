@@ -2,10 +2,11 @@
 static int red;
 static int blue;
 static int green;
+static String out;
 // takes boardlength value
 static int boardlength;
-static int peerinfluencefactor =1;
-static int wildfactor = 1;
+static int peerinfluencefactor;
+static int wildfactor;
 // direct influence code variables
 static int directinfluencefactor = 3;
 static int directColorMode;
@@ -52,7 +53,11 @@ void beginningscreen(){
   text("300",865,500);
   text("350",1015,500);
   if (mousePressed){
-    tl = new tileLand(((int)(mouseX * ((double)750/1100)))/2);
+    int size = 5*((((int)(mouseX * ((double)750/1100)))/2)/5);    
+    if (size == 0){
+      size = 5;
+    }
+    tl = new tileLand(size);
     begin = false;
   }
 }
@@ -141,6 +146,9 @@ void draw() {
     int passtime = millis() - savetime;
     if (passtime > naturalspeed) {
       if (daysleft > 1){
+        if (daysleft == 26){
+          tl.rankremove();
+        }
         tl.naturalprocess();
         savetime = millis();
         daysleft --; 

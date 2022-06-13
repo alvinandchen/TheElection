@@ -189,56 +189,39 @@ public class tileLand{
     
         // square influence code
         if (square){
-          if ((j+1)*(width-350)/(boardlength+2)<mouseX && (j+2)*(width-350)/(boardlength+2)>mouseX && (i+1)*height/(boardlength+2)<mouseY&& (i+2)*height/(boardlength+2)>mouseY){
-            for (int k = -((int)radius); k <= ((int)radius); k++){
-              for (int l = -((int)radius); l <= ((int)radius); l++){
-                if ((i+k>=0 && i+k<boardlength) && (j+l>=0 && j+l<boardlength)){     
-                  if (clr.equals("Blue")){
-                    if (tiles[i+k][j+l].c != color(50,50,255)&& random(0,3000)>(3000-directEffectiveness)){
-                      adding("blue",i+k,j+l);
-                      tiles[i+k][j+l] = new tileSquare((j+l+1)*(width-350)/(boardlength+2),(i+k+1)*height/(boardlength+2),height/(boardlength+2),color(50,50,255),tiles[i+k][j+l].c);            
-                      
-                    }
-                  }
-                  if (clr.equals("Red")){
-                    if (tiles[i+k][j+l].c != color(255,50,50) && random(0,3000)>(3000-directEffectiveness)){
-                      adding("red",i+k,j+l);
-                      tiles[i+k][j+l] = new tileSquare((j+l+1)*(width-350)/(boardlength+2),(i+k+1)*height/(boardlength+2),height/(boardlength+2),color(255,50,50),tiles[i+k][j+l].c);                
-                      
-                    }
-                  }
-                  if (clr.equals("Green")){
-                    if (tiles[i+k][j+l].c != color(50,255,50) && random(0,3000)>(3000-directEffectiveness)){
-                      adding("green",i+k,j+l);
-                      tiles[i+k][j+l] = new tileSquare((j+l+1)*(width-350)/(boardlength+2),(i+k+1)*height/(boardlength+2),height/(boardlength+2),color(50,255,50),tiles[i+k][j+l].c);                
-                      
-                    }
-                  }
-                }
-              }
-            }
-          }
+          squareinfluence(i,j,clr);
         }
-        
         // circle influence code
         if (circle){
-          if (radius * (750/(boardlength+2)) >= sqrt( pow(mouseX-((float)j+1.5)*((float)750)/(boardlength+2),2) + pow(mouseY-((float)(i)+1.5)*(((float)750)/(boardlength+2)),2) ) ){
+          circleinfluence(i,j,clr);
+        }
+      }
+    }
+  }
+  void squareinfluence(int i, int j, String clr){
+    if ((j+1)*(width-350)/(boardlength+2)<mouseX && (j+2)*(width-350)/(boardlength+2)>mouseX && (i+1)*height/(boardlength+2)<mouseY&& (i+2)*height/(boardlength+2)>mouseY){
+      for (int k = -((int)radius); k <= ((int)radius); k++){
+        for (int l = -((int)radius); l <= ((int)radius); l++){
+          if ((i+k>=0 && i+k<boardlength) && (j+l>=0 && j+l<boardlength)){     
             if (clr.equals("Blue")){
-              if (tiles[i][j].c != color(50,50,255) && random(0,3000)>(3000-directEffectiveness)){
-                adding("blue",i,j);
-                tiles[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*(height)/(boardlength+2),height/(boardlength+2),color(50,50,255),tiles[i][j].c);            
+              if (tiles[i+k][j+l].c != color(50,50,255)&& random(0,3000)>(3000-directEffectiveness)){
+                adding("blue",i+k,j+l);
+                tiles[i+k][j+l] = new tileSquare((j+l+1)*(width-350)/(boardlength+2),(i+k+1)*height/(boardlength+2),height/(boardlength+2),color(50,50,255),tiles[i+k][j+l].c);            
+                
               }
             }
             if (clr.equals("Red")){
-              if (tiles[i][j].c != color(255,50,50) && random(0,3000)>(3000-directEffectiveness)){
-                adding("red",i,j);
-                tiles[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(255,50,50),tiles[i][j].c);
+              if (tiles[i+k][j+l].c != color(255,50,50) && random(0,3000)>(3000-directEffectiveness)){
+                adding("red",i+k,j+l);
+                tiles[i+k][j+l] = new tileSquare((j+l+1)*(width-350)/(boardlength+2),(i+k+1)*height/(boardlength+2),height/(boardlength+2),color(255,50,50),tiles[i+k][j+l].c);                
+                
               }
             }
             if (clr.equals("Green")){
-              if (tiles[i][j].c != color(50,255,50) && random(0,3000)>(3000-directEffectiveness)){
-                adding("green",i,j);
-                tiles[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(50,255,50),tiles[i][j].c);
+              if (tiles[i+k][j+l].c != color(50,255,50) && random(0,3000)>(3000-directEffectiveness)){
+                adding("green",i+k,j+l);
+                tiles[i+k][j+l] = new tileSquare((j+l+1)*(width-350)/(boardlength+2),(i+k+1)*height/(boardlength+2),height/(boardlength+2),color(50,255,50),tiles[i+k][j+l].c);                
+                
               }
             }
           }
@@ -246,6 +229,29 @@ public class tileLand{
       }
     }
   }
+  void circleinfluence(int i, int j, String clr){
+    if (radius * (750/(boardlength+2)) >= sqrt( pow(mouseX-((float)j+1.5)*((float)750)/(boardlength+2),2) + pow(mouseY-((float)(i)+1.5)*(((float)750)/(boardlength+2)),2) ) ){
+      if (clr.equals("Blue")){
+        if (tiles[i][j].c != color(50,50,255) && random(0,3000)>(3000-directEffectiveness)){
+          adding("blue",i,j);
+          tiles[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*(height)/(boardlength+2),height/(boardlength+2),color(50,50,255),tiles[i][j].c);            
+        }
+      }
+      if (clr.equals("Red")){
+        if (tiles[i][j].c != color(255,50,50) && random(0,3000)>(3000-directEffectiveness)){
+          adding("red",i,j);
+          tiles[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(255,50,50),tiles[i][j].c);
+        }
+      }
+      if (clr.equals("Green")){
+        if (tiles[i][j].c != color(50,255,50) && random(0,3000)>(3000-directEffectiveness)){
+          adding("green",i,j);
+          tiles[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(50,255,50),tiles[i][j].c);
+        }
+      }
+    }
+  }
+  
   void adding(String col, int i, int j){
     if (col.equals("green")){
       if (tiles[i][j].c == color(255,50,50)){
@@ -275,4 +281,80 @@ public class tileLand{
       blue ++;
     }
   }
+  
+  void rankremove(){
+    if (green <= red && green <= blue){
+      out = "green";
+      for (int i=0; i<boardlength; i+=1){
+        for (int j=0; j<boardlength; j+=1){
+          if (tiles[i][j].c == color(50,255,50)){
+            green --;
+            if (tiles[i][j].lastcolor != color(50,255,50)){
+              tiles[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),tiles[i][j].lastcolor,tiles[i][j].lastcolor);            
+            }
+            else{
+              int col = (int)random(1,3);
+              if (col == 1){
+                tiles[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(255,50,50),color(255,50,50));
+                red += 1;
+              }
+              else if (col == 2){
+                tiles[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(50,50,255),color(50,50,255));
+                blue += 1;
+              }              
+            }
+          }
+        }
+      }
+    }
+    else if (blue <= red && blue <= green){
+      out = "blue";
+      for (int i=0; i<boardlength; i+=1){
+        for (int j=0; j<boardlength; j+=1){
+          if (tiles[i][j].c == color(50,50,255)){
+            blue --;
+            if (tiles[i][j].lastcolor != color(50,50,255)){
+              tiles[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),tiles[i][j].lastcolor,tiles[i][j].lastcolor);            
+            }
+            else{
+              int col = (int)random(1,3);
+              if (col == 1){
+                tiles[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(255,50,50),color(255,50,50));
+                red += 1;
+              }
+              else if (col == 2){
+                tiles[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(50,255,50),color(50,255,50));
+                green += 1;
+              }              
+            }
+          }        
+        }
+      }    
+    }
+    else if (red <= green && red <= blue){
+      out = "red";
+      for (int i=0; i<boardlength; i+=1){
+        for (int j=0; j<boardlength; j+=1){
+          if (tiles[i][j].c == color(255,50,50)){
+            red --;
+            if (tiles[i][j].lastcolor != color(255,50,50)){
+              tiles[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),tiles[i][j].lastcolor,tiles[i][j].lastcolor);            
+            }
+            else{
+              int col = (int)random(1,3);
+              if (col == 1){
+                tiles[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(50,50,255),color(50,50,255));
+                blue += 1;
+              }
+              else if (col == 2){
+                tiles[i][j] = new tileSquare((j+1)*(width-350)/(boardlength+2),(i+1)*height/(boardlength+2),height/(boardlength+2),color(50,255,50),color(50,255,50));
+                green += 1;
+              }              
+            }
+          }        
+        }
+      }    
+    }
+  }
+
 }
