@@ -34,6 +34,7 @@ public class tileLand{
       }
     }  
   }
+  //umbrella method for natural process
   void naturalprocess(){
     // creates a temp map for tileSquare
     tileSquare[][] tilesfuture = new tileSquare[boardlength][boardlength];
@@ -156,6 +157,7 @@ public class tileLand{
     // original array takes new reference to the temp array
     tiles = tilesfuture;
   }
+  //method for direct influence by user
   void directInfluence(){
     String clr;
     if (directColorMode == 0){
@@ -198,6 +200,7 @@ public class tileLand{
       }
     }
   }
+  //method for square influence (factors effectiveness)
   void squareinfluence(int i, int j, String clr){
     if ((j+1)*(width-350)/(boardlength+2)<mouseX && (j+2)*(width-350)/(boardlength+2)>mouseX && (i+1)*height/(boardlength+2)<mouseY&& (i+2)*height/(boardlength+2)>mouseY){
       for (int k = -((int)radius); k <= ((int)radius); k++){
@@ -229,6 +232,7 @@ public class tileLand{
       }
     }
   }
+  //method for circle influence (factors effectiveness)
   void circleinfluence(int i, int j, String clr){
     if (radius * (750/(boardlength+2)) >= sqrt( pow(mouseX-((float)j+1.5)*((float)750)/(boardlength+2),2) + pow(mouseY-((float)(i)+1.5)*(((float)750)/(boardlength+2)),2) ) ){
       if (clr.equals("Blue")){
@@ -251,7 +255,7 @@ public class tileLand{
       }
     }
   }
-  
+  //determining color count
   void adding(String col, int i, int j){
     if (col.equals("green")){
       if (tiles[i][j].c == color(255,50,50)){
@@ -281,7 +285,7 @@ public class tileLand{
       blue ++;
     }
   }
-  
+  //method to determine which color to remove
   void rankremove(){
     if (green <= red && green <= blue){
       out = "green";
@@ -356,6 +360,7 @@ public class tileLand{
       }    
     }
   }
+  //method to count districts
   void countdistrict(int districtsize){
     for (int i = 0; i < districtsize; i++){
       for (int j = 0; j < districtsize; j++){
