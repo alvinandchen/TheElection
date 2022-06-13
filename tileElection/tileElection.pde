@@ -39,17 +39,17 @@ void setup(){
 void beginningscreen(){
   fill(0,0,255);
   textSize(100);
-  text("ELECTION", 20, 100);
+  text("ELECTION", 70, 100);
   fill(250,0,0);
-  text("SIMULATOR", 520, 100);    
+  text("SIMULATOR", 540, 100);    
   textSize(50);
   fill(0,255,0);
-  text("CHOOSE YOUR BOARD SIZE", 200, 200);  
+  text("CHOOSE YOUR BOARD SIZE", 250, 200);  
   fill(255);
   textSize(30);
-  text("Click Anywhere On The Screen To Determine Board Size",155,250);
+  text("Click Anywhere On The Screen To Determine Board Size",190,250);
   textSize(20);
-  text("the more left the smaller, the more right the larger (numbers provided for appx reference)",120,280);
+  text("the further left you click, the smaller the board size. (the numbers are provided for size reference)",145,280);
   text("15",35,500);
   text("50",140,500);
   text("100",277,500);
