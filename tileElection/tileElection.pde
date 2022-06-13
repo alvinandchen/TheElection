@@ -3,11 +3,12 @@ static int red;
 static int blue;
 static int green;
 static String out = "";
-static String winner = "";
+static String popwinner;
+static String diswinner;
 // takes boardlength value
 static int boardlength;
-static int peerinfluencefactor;
-static int wildfactor;
+static int peerinfluencefactor = 1;
+static int wildfactor = 1;
 // direct influence code variables
 static int directinfluencefactor = 3;
 static int directColorMode;
@@ -19,8 +20,8 @@ static boolean time;
 static float radius;
 // time variables for natural process
 static int savetime;
-static int naturalspeed = 1000;
-static int daysleft = 100;
+static int naturalspeed = 500;
+static int daysleft = 5;
 static boolean begin = true;
 static boolean end = false;
 // tileLand object used as the map
@@ -143,7 +144,7 @@ void draw() {
     if (!mousePressed || !time){
       radius = 0;
     }
-  
+    drawdistrictlines();
     int passtime = millis() - savetime;
     if (passtime > naturalspeed) {
       if (daysleft > 1){
@@ -164,21 +165,38 @@ void draw() {
   }
 }
 
+void drawdistrictlines(){
+  int numofdistricts = boardlength
+}
+
 void endscreen(){
    fill(#34568B);
    rect(0,0,1150,750);
    fill(255);
+   if (green >= blue && green >= red){
+     popwinner = "Green";
+   }
+   else if (red >= blue && red >= green){
+     popwinner = "Red";
+   }
+   else{
+     popwinner = "Blue";
+   }
+   textSize(60);
+   text("Popular Vote Winner: " + popwinner,50,100);
+   text("District Winner: " + diswinner,50,200);
    textSize(30);
+   fill(255,50,50);
    text("Click To Run Simulation Again",320,650);
    if (mousePressed){
      begin = true;
      end = false;
-     reset();
+     resetpresets();
      delay(300);
    }
 }
   
-void reset(){
+void resetpresets(){
   red = 0;
   blue = 0;
   green = 0;
@@ -193,7 +211,7 @@ void reset(){
   time = false;
   radius = 0;
   savetime = 0;
-  naturalspeed = 1000;
+  naturalspeed = 500;
   daysleft = 100;
   begin = true;
   end = false;
