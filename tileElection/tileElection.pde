@@ -25,7 +25,7 @@ static float radius;
 // time variables for natural process
 static int savetime;
 static int naturalspeed = 500;
-static int daysleft = 5;
+static int daysleft = 100;
 static boolean begin = true;
 static boolean end = false;
 // tileLand object used as the map
