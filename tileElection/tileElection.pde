@@ -155,10 +155,6 @@ void draw() {
     if (districtlineson){
       drawdistrictlines();
     }
-    reddis = 0;
-    bluedis = 0;
-    greendis = 0;
-    tl.countdistrict(boardlength/5);
     int passtime = millis() - savetime;
     if (passtime > naturalspeed) {
       if (daysleft > 1){
