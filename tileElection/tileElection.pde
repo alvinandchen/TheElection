@@ -304,13 +304,13 @@ void keyPressed(){
   if (key == '7'){
     directEffectiveness ++;
   }
-  if (key == '8'){
+  if (key == '8' && directEffectiveness > 0){
     directEffectiveness --;
   }
   if (key == '9'){
     directSpeed ++;
   }
-  if (key == '0'){
+  if (key == '0' && directSpeed > 0){
     directSpeed --;
   }
   if (key == '-'){
