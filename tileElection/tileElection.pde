@@ -2,6 +2,9 @@
 static int red;
 static int blue;
 static int green;
+static int reddis;
+static int bluedis;
+static int greendis;
 static String out = "";
 static String popwinner;
 static String diswinner;
@@ -85,11 +88,17 @@ void draw() {
     textSize(15);
     text("Map Length: " + boardlength, 770, down);
     down += 30;
-    text("Red Count: " + red, 770, down);
+    text("Red Individual Count: " + red, 770, down);
     down += 30;
-    text("Green Count: " + green, 770, down);
+    text("Green Individual Count: " + green, 770, down);
     down += 30;
-    text("Blue Count: " + blue, 770, down);
+    text("Blue Individual Count: " + blue, 770, down);
+    down += 30;
+    text("Red District Count: " + reddis, 770, down);
+    down += 30;
+    text("Green District Count: " + greendis, 770, down);
+    down += 30;
+    text("Blue District Count: " + bluedis, 770, down);
     down += 30;
     if (districtlineson){
       text("District Lines: ON", 770, down);
@@ -155,6 +164,10 @@ void draw() {
     if (districtlineson){
       drawdistrictlines();
     }
+    reddis = 0;
+    bluedis = 0;
+    greendis = 0;
+    tl.countdistrict(boardlength/5);
     int passtime = millis() - savetime;
     if (passtime > naturalspeed) {
       if (daysleft > 1){
@@ -200,6 +213,16 @@ void endscreen(){
    else{
      popwinner = "Blue";
    }
+   tl.countdistrict(boardlength/5);
+   if (greendis >= bluedis && greendis >= reddis){
+     diswinner = "Green";
+   }
+   else if (reddis >= bluedis && reddis >= greendis){
+     diswinner = "Red";
+   }
+   else{
+     diswinner = "Blue";
+   }   
    textSize(60);
    text("Popular Vote Winner: " + popwinner,50,100);
    text("District Winner: " + diswinner,50,200);
@@ -218,6 +241,11 @@ void resetpresets(){
   red = 0;
   blue = 0;
   green = 0;
+  reddis = 0;
+  bluedis = 0;
+  greendis = 0;
+  out = "";
+  districtlineson = false; 
   peerinfluencefactor = 1;
   wildfactor = 1;
   directinfluencefactor = 3;

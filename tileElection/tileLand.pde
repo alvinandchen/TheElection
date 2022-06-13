@@ -356,5 +356,40 @@ public class tileLand{
       }    
     }
   }
+  void countdistrict(int districtsize){
+    for (int i = 0; i < districtsize; i++){
+      for (int j = 0; j < districtsize; j++){
+        int redn = 0;
+        int bluen = 0;
+        int greenn = 0;
+        int tilex = 2 + 3*i;
+        int tiley = 2 + 3*j;
+        for (int k = -2; k <= 2; k++){
+          for (int l = -2; l <= 2; l++){
+            if ((i+k>=0 && i+k<boardlength) && (j+l>=0 && j+l<boardlength)){
+              if(tiles[tilex + k][tiley + l].c == color(255,50,50)){
+                redn ++;
+              }
+              if(tiles[tilex + k][tiley + l].c == color(50,50,255)){
+                bluen++;
+              }
+              if(tiles[tilex + k][tiley + l].c == color(50,255,50)){
+                greenn++;
+              }
+            }
+          } 
+        }
+        if (greenn >= redn && greenn >= bluen){
+          greendis ++;
+        }
+        if (redn >= greenn && redn >= bluen){
+          reddis ++;
+        }
+        if (bluen >= redn && bluen >= greenn){
+          bluedis ++;
+        } 
+      }
+    }
+  }
 
 }
