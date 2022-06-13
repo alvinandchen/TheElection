@@ -2,6 +2,9 @@
 static int red;
 static int blue;
 static int green;
+static int reddis;
+static int bluedis;
+static int greendis;
 static String out = "";
 static String popwinner;
 static String diswinner;
